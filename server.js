@@ -56,6 +56,10 @@ app.get('/about', (req, res) => {
     })
 })
 
+app.get('/prueba', (req, res) => {
+    res.render('prueba');
+})
+
 app.listen(port, () => {
     console.log(`El servidor esta corriendo en: http://localhost:${port}`);
 });

@@ -7,3 +7,21 @@ footer{
     text-align: center;
     padding: 20px;
 }
+
+
+.titulo{
+    display: block;
+}
+
+.contenido{
+    display: block;
+}
+
+.agregarTarea{
+    margin-top: 1%;
+}
+
+.container{
+    width: 50%;
+    margin-top: 2%;
+}

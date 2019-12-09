@@ -1,0 +1,89 @@
+{{>  head}}
+
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Lugares</label>
+            <input type="text" class="form-control" id="lugar" aria-describedby="lugarAyuda"
+                placeholder="Ingresa tu lugar">
+            <small id="lugarAyuda" class="form-text text-muted">ej: Cerro San Cristobal</small>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="agregarItem()">Agregar</button>
+        <button type="button" class="btn btn-primary" onclick="azar()">Lugar a visitar!!</button>
+    </form>
+</div>
+
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush" id="Lugares">
+
+        </ul>
+    </div>
+</div>
+
+<script>
+
+    var contador = 0;
+
+    function agregarItem() {
+        let lugar = document.getElementById('lugar').value;
+        if (lugar) {
+            contador++;
+            console.log(`contador: ${contador}`)
+            alert(lugar)
+
+            let lugarPorRecorrer = document.createElement('li');
+            let contenidoLugar = document.createTextNode(lugar);
+
+            lugarPorRecorrer.appendChild(contenidoLugar);
+
+            const contenidos = document.getElementById('Lugares').appendChild(lugarPorRecorrer);
+
+            alert("Se ha insertado correctamente")
+            document.getElementById('lugar').value = '';
+        }
+    }
+
+
+    function azar() {
+        //Para tener el valor base para no perderlo, en caso nosotros hagamos otro al azar
+        const base = Math.floor((Math.random() * contador) + 1);
+        let aleatorio = base;
+
+        const listaDeLugares = document.getElementById("Lugares").querySelectorAll('li');
+
+        for (let i = 0; i < listaDeLugares.length; i++) {
+            // La sola iteracion del (i) nos condiciona que este se restara y por ende llegara a valores negativos en caso tengo x numero de lugares agregados
+            // Se debe mantener su valor pre-establecido para que siga funcionando bien a pesar de las iteraciones
+            aleatorio = base;
+            aleatorio -= 1;
+            /*
+            console.log(`i: ${i}`);
+            console.log(`aleatorio: ${aleatorio}`)
+            console.log(`maximo: ${listaDeLugares.length}`)
+            */
+
+            if(i == 0 && contador == 1){
+                const mensaje = listaDeLugares[i].innerHTML;
+
+                Swal.fire(
+                    'Lugar Aleatorio',
+                    `Te ha salido: ${mensaje}`,
+                    'success'
+                )
+            }
+
+            if(i == aleatorio){
+                
+                console.log(`i: ${i}`)
+                const mensaje = listaDeLugares[i].innerHTML;
+
+                Swal.fire(
+                    'Lugar Aleatorio',
+                    `Te ha salido: ${mensaje}`,
+                    'success'
+                )
+            }
+        }
+    }
+</script>
